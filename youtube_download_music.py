@@ -13,12 +13,13 @@ def download_song(song_url):
             os.mkdir(os.getcwd() + "/songs")
       
       for file in os.listdir('.'):
-            if not file.endswith('py'):
+            if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec'):
                   try:
                         filename = file.split(".")[0]
                         d = os.getcwd()
                         ff = FFmpeg(executable='ff/ffmpeg/bin/ffmpeg.exe',inputs={file: None}, outputs={"./songs/" + filename + ".mp3": None})
                         ff.run()
+                        os.remove(file)
                   except:
                         pass
 
