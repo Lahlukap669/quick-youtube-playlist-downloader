@@ -23,7 +23,7 @@ def download_song(song_url):
             os.mkdir(os.getcwd() + "/songs")
       
       for file in os.listdir('.'):
-            if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec'):
+            if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec') and not file.endswith('exe'):
                   try:
                         filename = file.split(".")[0]
                         d = os.getcwd()
