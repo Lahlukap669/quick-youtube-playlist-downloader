@@ -19,8 +19,6 @@ def download_song(song_url):
       with youtube_dl.YoutubeDL() as ydl:
             info_dict = ydl.extract_info(song_url, download=True)
       
-      if os.path.exists(os.getcwd() + "/ff")==False:
-            os.mkdir(os.getcwd() + "/ff")
       if os.path.exists(os.getcwd() + "/songs")==False:
             os.mkdir(os.getcwd() + "/songs")
       
