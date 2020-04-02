@@ -25,16 +25,16 @@ def download_song(song_url):
       for file in os.listdir('.'):
             if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec') and not file.endswith('exe'):
                   try:
-                        filename = file.split(".")[0]
+                        filename = file.split(".")[0].encode("ascii", errors="ignore").decode()
                         d = os.getcwd()
                         ff = FFmpeg(executable='ff/ffmpeg/bin/ffmpeg.exe',inputs={file: None}, outputs={"./songs/" + filename + ".mp3": None})
                         ff.run()
-                        os.remove(file)
+                        #os.remove(file)
                   except:
                         pass
 
-##      for file in os.listdir('.'):
-##            if file.endswith('mp4') or file.endswith('webm') or file.endswith('mkv'):
-##                  os.remove(file)
+      for file in os.listdir('.'):
+            if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec') and not file.endswith('exe'):
+                  os.remove(file)
 
 download_song(input("playlist_url: "))
