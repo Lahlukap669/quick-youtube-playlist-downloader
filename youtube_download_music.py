@@ -1,7 +1,19 @@
-import youtube_dl
 import os
 import shutil
-from ffmpy import FFmpeg
+
+try:
+  import youtube_dl
+except ImportError:
+  print("Trying to Install required module: youtube_dl\n")
+  os.system('python -m pip install youtube_dl')
+
+
+try:
+  from ffmpy import FFmpeg
+except ImportError:
+  print("Trying to Install required module: ffmpy\n")
+  os.system('python -m pip install ffmpy')
+
 
 def download_song(song_url):
       with youtube_dl.YoutubeDL() as ydl:
@@ -27,4 +39,4 @@ def download_song(song_url):
 ##            if file.endswith('mp4') or file.endswith('webm') or file.endswith('mkv'):
 ##                  os.remove(file)
 
-download_song(input("vnes link playlita: "))
+download_song(input("playlist_url: "))
