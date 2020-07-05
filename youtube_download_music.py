@@ -15,26 +15,27 @@ except ImportError:
   os.system('python -m pip install ffmpy')
 
 
-def download_song(song_url):
+def download_song(song_url, path, ime):
       with youtube_dl.YoutubeDL() as ydl:
+          try:
             info_dict = ydl.extract_info(song_url, download=True)
+          except:
+              pass
       
-      if os.path.exists(os.getcwd() + "/songs")==False:
-            os.mkdir(os.getcwd() + "/songs")
+      if os.path.exists(path + "/" + ime)==False:
+            os.mkdir(path + "/" + ime)
       
       for file in os.listdir('.'):
             if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec') and not file.endswith('exe'):
                   try:
                         filename = file.split(".")[0].encode("ascii", errors="ignore").decode()
                         d = os.getcwd()
-                        ff = FFmpeg(executable='ff/ffmpeg/bin/ffmpeg.exe',inputs={file: None}, outputs={"./songs/" + filename + ".mp3": None})
+                        ff = FFmpeg(executable='ff/ffmpeg/bin/ffmpeg.exe',inputs={file: None}, outputs={path + "/" + ime + "/" + filename + ".mp3": None})
                         ff.run()
-                        #os.remove(file)
+                        os.remove(file)
                   except:
                         pass
 
-      for file in os.listdir('.'):
-            if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec') and not file.endswith('exe'):
-                  os.remove(file)
-
-download_song(input("playlist_url: "))
+##      for file in os.listdir('.'):
+ ##           if not file.endswith('py') and not file.endswith('md') and not file.endswith('spec') and not file.endswith('exe'):
+ ##                 os.remove(file)
