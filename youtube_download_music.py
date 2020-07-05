@@ -2,6 +2,7 @@ import os
 import shutil
 
 try:
+  os.system('pip install youtube_dl --upgrade')
   import youtube_dl
 except ImportError:
   print("Trying to Install required module: youtube_dl\n")
